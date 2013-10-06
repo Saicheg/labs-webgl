@@ -7,7 +7,6 @@ html
 
     title WebGL Butterfly
     = stylesheet_link_tag "all"
+    = javascript_include_tag "all"
   body class=page_classes
-    .wrapper
-      .container
-          = yield
+    .container= yield
