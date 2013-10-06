@@ -6,6 +6,11 @@ class window.ThreeInit
     @options = options
     @container = document.getElementById('canvas')
 
+    @createScene()
+    @createCamera()
+    @createRenderer()
+    @createLight()
+
   createRenderer: =>
     @options.renderer ||= {}
 
@@ -60,34 +65,41 @@ class window.ThreeInit
     # @camera.lookAt({ x: 0, y: 10, z: 0 })
     # @scene.add @camera
 
-  # createLight: ->
-  #   light = @options.light || {}
+  createLight: ->
+    # light = @options.light || {}
 
-  #   light.color     || = 0xffffff
-  #   light.intensity || = 1.5
+    directionalLight = new THREE.DirectionalLight(0xffeedd)
+    directionalLight.position.set(0, 70, 100).normalize()
+    @scene.add(directionalLight)
 
-  #   light.x         || = 0
-  #   light.y         || = 0
-  #   light.z         || = 1
 
-  #   # Create a directional light to show off the object
-  #   @light = new THREE.SpotLight light.color, light.intensity
-  #   @light.position.set light.x, light.y, light.z
-  #   @light.castShadow = true
-  #   @light.shadowDarkness = 0.95
-  #   @light.shadowMapHeight = 2048
-  #   @light.shadowMapWidth = 2048
-  #   # @light.shadowCameraVisible = true
+    # lEE.AmbientLight(0x666666);
+    ambient = new THREE.AmbientLight(0x666666)
+    @scene.add(ambient)
+    # light.intensity || = 1.5
 
-  #   aspect = @container.offsetWidth / @container.offsetHeight
-  #   shadowWidth = 40
-  #   # @camera = new THREE.OrthographicCamera( -edgeLen*cam.aspect, edgeLen*cam.aspect, edgeLen, -edgeLen, 1, 1000 )
-  #   @light.shadowCameraRight    =  shadowWidth * aspect
-  #   @light.shadowCameraLeft     = -shadowWidth * aspect
-  #   @light.shadowCameraTop      =  shadowWidth
-  #   @light.shadowCameraBottom   = -shadowWidth
+    # light.x         || = 0
+    # light.y         || = 0
+    # light.z         || = 1
 
-  #   @scene.add @light
+    # # Create a directional light to show off the object
+    # @light = new THREE.SpotLight light.color, light.intensity
+    # @light.position.set light.x, light.y, light.z
+    # @light.castShadow = true
+    # @light.shadowDarkness = 0.95
+    # @light.shadowMapHeight = 2048
+    # @light.shadowMapWidth = 2048
+    # # @light.shadowCameraVisible = true
+
+    # aspect = @container.offsetWidth / @container.offsetHeight
+    # shadowWidth = 40
+    # # @camera = new THREE.OrthographicCamera( -edgeLen*cam.aspect, edgeLen*cam.aspect, edgeLen, -edgeLen, 1, 1000 )
+    # @light.shadowCameraRight    =  shadowWidth * aspect
+    # @light.shadowCameraLeft     = -shadowWidth * aspect
+    # @light.shadowCameraTop      =  shadowWidth
+    # @light.shadowCameraBottom   = -shadowWidth
+
+    # @scene.add @light
 
 
   render: ->

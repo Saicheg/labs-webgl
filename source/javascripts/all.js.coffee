@@ -6,5 +6,5 @@ window.onload = ->
   body.style.width = window.innerWidth + 'px'
   body.style.height = window.innerHeight + 'px'
 
-  controller = new ButterflyController()
+  window.controller = new ButterflyController()
   controller.run()

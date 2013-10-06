@@ -1,32 +1,30 @@
 class window.ButterflyController
   constructor: ->
-    @start = Date.now()
-
     @init = new ThreeInit
-    @init.createScene()
-    @init.createCamera()
-    @init.createRenderer()
+    @group = new THREE.Object3D()
+    @loader = new THREE.JSONLoader()
+    @createButterfly()
+    @init.scene.add(@group)
 
-    @createCube()
-
-  createCube: =>
-    geometry = new THREE.CubeGeometry(200,200,200)
-    material = new THREE.MeshNormalMaterial()
-
-    @cube = new THREE.Mesh(geometry, material)
-    @cube.position.y = 150
-
-    @init.scene.add(@cube)
+  createButterfly: =>
+    @loader.load 'models/butterfly.js', (geometries, materials) =>
+      butterfly = new THREE.Mesh(geometries, new THREE.MeshFaceMaterial(materials))
+      # @butterfly.position.set 50, 30, 0
+      # @butterfly.scale.set 0.3, 0.3, 0.3
+      # @butterfly.overdraw = true
+      # @butterfly.castShadow = true
+      # @butterfly.receiveShadow = true
+      @group.add(butterfly)
 
   render: =>
-    @cube.rotation.x += 0.02
-    @cube.rotation.y += 0.0225
-    @cube.rotation.z += 0.0175
+    @group.rotation.x += 0.02
+    @group.rotation.y += 0.0225
+    @group.rotation.z += 0.0175
 
-    dtime = Date.now() - @start
-    @cube.scale.x  = 1.0 + 0.3*Math.sin(dtime/300)
-    @cube.scale.y  = 1.0 + 0.3*Math.sin(dtime/300)
-    @cube.scale.z  = 1.0 + 0.3*Math.sin(dtime/300)
+    # dtime = Date.now() - @start
+    # @cube.scale.x  = 1.0 + 0.3*Math.sin(dtime/300)
+    # @cube.scale.y  = 1.0 + 0.3*Math.sin(dtime/300)
+    # @cube.scale.z  = 1.0 + 0.3*Math.sin(dtime/300)
 
     @init.render()
 
