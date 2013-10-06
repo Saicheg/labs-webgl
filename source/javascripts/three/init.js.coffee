@@ -6,12 +6,6 @@ class window.ThreeInit
     @options = options
     @container = document.getElementById('canvas')
 
-    # @run = options.run
-    # @createRenderer(options)
-    # @createScene(options)
-    # @createCamera(options)
-    # @createLight(options)
-
   createRenderer: =>
     @options.renderer ||= {}
 
