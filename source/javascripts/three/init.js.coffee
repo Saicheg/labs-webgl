@@ -72,7 +72,7 @@ class window.ThreeInit
     directionalLight.position.set(0, 70, 100).normalize()
     @scene.add(directionalLight)
 
-    ambient = new THREE.AmbientLight(0x666666)
+    ambient = new THREE.AmbientLight(0xFFFFFF)
     @scene.add(ambient)
     # light.intensity || = 1.5
 
