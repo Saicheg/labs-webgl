@@ -1,6 +1,7 @@
 class window.ApplicationController
   constructor: ->
     @init = new ThreeInit
+    window.init = @init
     @controllers = []
 
     @controllers.push(new ButterflyController(@init))

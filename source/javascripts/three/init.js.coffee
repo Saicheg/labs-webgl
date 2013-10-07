@@ -36,11 +36,11 @@ class window.ThreeInit
     cam.angle  ||= 75
     cam.aspect ||= @container.offsetWidth / @container.offsetHeight
     cam.min    ||= 0.1
-    cam.max    ||= 1000
+    cam.max    ||= 1000000
 
     cam.x      ||= 0
-    cam.y      ||= 250
-    cam.z      ||= 600
+    cam.y      ||= 0
+    cam.z      ||= 0
 
     @camera = new THREE.PerspectiveCamera cam.angle, cam.aspect, cam.min, cam.max
     @camera.position.set cam.x, cam.y, cam.z
