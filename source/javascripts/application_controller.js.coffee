@@ -3,13 +3,8 @@ class window.ApplicationController
     @init = new ThreeInit
     @controllers = []
 
-    @butterfly_controller = new ButterflyController(@init)
-    @meadow_controller = new MeadowController(@init)
-
-    @controllers.push(@butterfly_controller)
-    @controllers.push(@meadow_controller)
-
-    @init.scene.add(@group)
+    @controllers.push(new ButterflyController(@init))
+    @controllers.push(new MeadowController(@init))
 
   render: =>
     for controller in @controllers
