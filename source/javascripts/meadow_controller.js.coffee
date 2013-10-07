@@ -1,17 +1,18 @@
-class window.MeadowController
+class window.MeadowController extends BaseController
   constructor: (init) ->
     @init = init
     @group = new THREE.Object3D()
     @loader = new THREE.JSONLoader()
-    @createButterfly()
+    @createGrass()
     @init.scene.add(@group)
 
-  createButterfly: =>
-    @loader.load 'models/butterfly.js', (geometries, materials) =>
-      butterfly = new THREE.Mesh(geometries, new THREE.MeshFaceMaterial(materials))
-      # @butterfly.position.set 50, 30, 0
-      # @butterfly.scale.set 0.3, 0.3, 0.3
-      # @butterfly.overdraw = true
-      # @butterfly.castShadow = true
-      # @butterfly.receiveShadow = true
-      @group.add(butterfly)
+  createGrass: =>
+    map = THREE.ImageUtils.loadTexture('/images/grass.jpg')
+    groundMaterial = new THREE.MeshLambertMaterial({ map: map })
+    window.planeSizeX = 1000
+    window.planeSizeY = 1000
+
+    plane = new THREE.Mesh(new THREE.PlaneGeometry(planeSizeX, planeSizeY), groundMaterial)
+    plane.rotation.x = -Math.PI / 2
+    # plane.receiveShadow = true
+    @group.add(plane)

@@ -39,8 +39,8 @@ class window.ThreeInit
     cam.max    ||= 1000
 
     cam.x      ||= 0
-    cam.y      ||= 150
-    cam.z      ||= 300
+    cam.y      ||= 250
+    cam.z      ||= 600
 
     @camera = new THREE.PerspectiveCamera cam.angle, cam.aspect, cam.min, cam.max
     @camera.position.set cam.x, cam.y, cam.z
@@ -68,12 +68,10 @@ class window.ThreeInit
   createLight: ->
     # light = @options.light || {}
 
-    directionalLight = new THREE.DirectionalLight(0xffeedd)
+    directionalLight = new THREE.DirectionalLight(0xFFFFFF)
     directionalLight.position.set(0, 70, 100).normalize()
     @scene.add(directionalLight)
 
-
-    # lEE.AmbientLight(0x666666);
     ambient = new THREE.AmbientLight(0x666666)
     @scene.add(ambient)
     # light.intensity || = 1.5
