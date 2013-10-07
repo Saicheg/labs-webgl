@@ -8,6 +8,9 @@ class window.ApplicationController
     @controllers.push(new MeadowController(@init))
 
   render: =>
+    # timer = - new Date().getTime() * 0.0002
+    # @init.camera.position.x = 1000 * Math.cos( timer )
+    # @init.camera.position.z = 1000 * Math.sin( timer )
     for controller in @controllers
       controller.render()
 
@@ -15,4 +18,5 @@ class window.ApplicationController
 
   run: =>
     @render()
+
     requestAnimationFrame(@run)

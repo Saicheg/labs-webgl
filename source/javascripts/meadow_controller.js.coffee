@@ -26,7 +26,7 @@ class window.MeadowController extends BaseController
 
     textureCube = THREE.ImageUtils.loadTextureCube(urls)
 
-    skyGeometry = new THREE.CubeGeometry( 5000, 5000, 5000 )
+    skyGeometry = new THREE.CubeGeometry( 8000, 8000, 8000 )
 
     materialArray = []
     for url in urls

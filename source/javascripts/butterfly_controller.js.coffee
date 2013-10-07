@@ -4,40 +4,69 @@ class window.ButterflyController extends BaseController
     @butterfly = new THREE.Object3D()
     @init.scene.add(@butterfly)
     @loader = new THREE.JSONLoader()
+    @butterfly.position.set(0,0,-150)
+    @butterfly.rotation.x = Math.PI / 2
+    @butterfly.rotation.y = Math.PI
     @createButterfly()
 
   createButterfly: =>
     @loader.load 'models/wing-left.js', (geometries, materials) =>
       @left= new THREE.Mesh(geometries, new THREE.MeshFaceMaterial(materials))
-      @left.position.set 0, 0, -100
-      @left.rotation.x = 2
-      @left.scale.set 0.01, 0.01, 0.01
-      # butterfly.overdraw = true
-      # butterfly.castShadow = true
-      # butterfly.receiveShadow = true
+      @left.direction = 'up'
+      @setParams(@left)
       @butterfly.add(@left)
+
     @loader.load 'models/wing-right.js', (geometries, materials) =>
       @right = new THREE.Mesh(geometries, new THREE.MeshFaceMaterial(materials))
-      @right.position.set 0, 0, -100
-      @right.rotation.x = 2
-      # wing.rotation.y = 2
-      # wing.rotation.z = 2
-      @right.scale.set 0.01, 0.01, 0.01
-      # butterfly.overdraw = true
-      # butterfly.castShadow = true
-      # butterfly.receiveShadow = true
+      @right.direction = 'up'
+      @setParams(@right)
       @butterfly.add(@right)
+
     @loader.load 'models/body.js', (geometries, materials) =>
       @body = new THREE.Mesh(geometries, new THREE.MeshFaceMaterial(materials))
-      @body.position.set 0, 0, -100
-      @body.scale.set 0.01, 0.01, 0.01
-      @body.rotation.x = 2
-      # butterfly.overdraw = true
-      # butterfly.castShadow = true
-      # butterfly.receiveShadow = true
+      @setParams(@body)
       @butterfly.add(@body)
 
-   render: =>
-     if @left
-       @left.rotation.x += 0.01
+   setParams: (obj) =>
+     obj.scale.set(0.01, 0.01, 0.01)
 
+   leftWingDirection: (wing) =>
+     if wing.direction == 'up' && wing.rotation.z <= 0.75
+       'up'
+     else if wing.direction == 'down' && wing.rotation.z >= 0.0
+       'down'
+     else if wing.direction == 'up'
+       'down'
+     else
+       'up'
+
+   rightWingDirection: (wing) =>
+     if wing.direction == 'up' && wing.rotation.z >= -0.75
+       'up'
+     else if wing.direction == 'down' && wing.rotation.z <= 0.0
+       'down'
+     else if wing.direction == 'up'
+       'down'
+     else
+       'up'
+
+   flitterLeft: (wing) =>
+     direction = @leftWingDirection(wing)
+     wing.direction = direction
+     if direction == 'up'
+       wing.rotation.z += 0.01
+     else if direction == 'down'
+       wing.rotation.z -= 0.01
+
+   flitterRight: (wing) =>
+     direction = @rightWingDirection(wing)
+     wing.direction = direction
+     if direction == 'up'
+       wing.rotation.z -= 0.01
+     else if direction == 'down'
+       wing.rotation.z += 0.01
+
+   render: =>
+     if @left && @right
+       @flitterLeft(@left)
+       @flitterRight(@right)
