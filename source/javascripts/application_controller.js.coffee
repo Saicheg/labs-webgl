@@ -4,7 +4,7 @@ class window.ApplicationController
     @controllers = []
 
     @controllers.push(new ButterflyController(@init))
-    @controllers.push(new MeadowController(@init))
+    # @controllers.push(new MeadowController(@init))
 
   render: =>
     for controller in @controllers

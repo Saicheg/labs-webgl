@@ -9,8 +9,11 @@ class window.ButterflyController extends BaseController
   createButterfly: =>
     @loader.load 'models/butterfly.js', (geometries, materials) =>
       butterfly = new THREE.Mesh(geometries, new THREE.MeshFaceMaterial(materials))
-      # butterfly.position.set 50, 30, 0
-      # butterfly.scale.set 3.3, 1.3, 1.3
+      butterfly.rotation.x = Math.PI / 2
+      butterfly.rotation.y = Math.PI
+
+      butterfly.position.set 200, 500, 0
+      butterfly.scale.set 2.5, 2.5, 2.5
       # butterfly.overdraw = true
       # butterfly.castShadow = true
       # butterfly.receiveShadow = true
