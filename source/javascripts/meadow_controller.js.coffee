@@ -1,4 +1,4 @@
-class window.ButterflyController
+class window.MeadowController
   constructor: (init) ->
     @init = init
     @group = new THREE.Object3D()
