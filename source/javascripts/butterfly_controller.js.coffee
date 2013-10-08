@@ -6,6 +6,9 @@ class window.ButterflyController extends BaseController
     @loader = new THREE.JSONLoader()
     @butterfly.rotation.x = Math.PI / 12
     @butterfly.rotation.y = Math.PI
+    @angleY = 0
+    @angleX = 0
+    @angleZ = 0
     @createButterfly()
 
   createButterfly: =>
@@ -69,7 +72,17 @@ class window.ButterflyController extends BaseController
      else if direction == 'down'
        wing.rotation.z += 0.01
 
+   move: =>
+      @angleY += 0.01
+      @angleX += 0.003
+      @angleZ += 0.004
+
+      @butterfly.position.y = Math.sin(@angleY) * 150
+      @butterfly.position.x = Math.sin(@angleX) * 150
+      @butterfly.position.z = Math.sin(@angleZ) * 150
+
    render: =>
      if @left && @right
        @flitterLeft(@left)
        @flitterRight(@right)
+       @move()

@@ -1,5 +1,6 @@
 class window.ApplicationController
   constructor: ->
+    window.WORLD_SIZE = 8000
     @init = new ThreeInit
     window.init = @init
     @controllers = []
@@ -8,17 +9,14 @@ class window.ApplicationController
     @controllers.push(new MeadowController(@init))
 
   render: =>
-    # timer = - new Date().getTime() * 0.0002
-    # @init.camera.position.x = 1000 * Math.cos( timer )
-    # @init.camera.position.z = 1000 * Math.sin( timer )
     for controller in @controllers
       controller.render()
+
+    pos = @controllers[0].butterfly.position
+    @init.camera.lookAt({x: pos.x, y: pos.y, z: pos.z})
 
     @init.render()
 
   run: =>
     @render()
-
-    @init.camera.lookAt({x:0, y:0, z:0})
-
     requestAnimationFrame(@run)

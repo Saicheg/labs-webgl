@@ -40,7 +40,7 @@ class window.ThreeInit
 
     cam.x      ||= 0
     cam.y      ||= 0
-    cam.z      ||= 150
+    cam.z      ||= 300
 
     @camera = new THREE.PerspectiveCamera cam.angle, cam.aspect, cam.min, cam.max
     @camera.position.set cam.x, cam.y, cam.z
@@ -107,8 +107,8 @@ class window.ThreeInit
 
 
   render: ->
-    timer = - new Date().getTime() * 0.0002
-    @camera.position.x = 150 * Math.cos( timer )
-    @camera.position.z = 150 * Math.sin( timer )
+    # timer = - new Date().getTime() * 0.0002
+    # @camera.position.x = 150 * Math.cos( timer )
+    # @camera.position.z = 150 * Math.sin( timer )
 
     @renderer.render @scene, @camera
