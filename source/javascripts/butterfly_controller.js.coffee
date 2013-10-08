@@ -4,7 +4,7 @@ class window.ButterflyController extends BaseController
     @butterfly = new THREE.Object3D()
     @init.scene.add(@butterfly)
     @loader = new THREE.JSONLoader()
-    @butterfly.rotation.x = Math.PI / 2
+    @butterfly.rotation.x = Math.PI / 12
     @butterfly.rotation.y = Math.PI
     @createButterfly()
 

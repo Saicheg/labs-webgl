@@ -66,7 +66,6 @@ class window.ThreeInit
   createLight: ->
     # light = @options.light || {}
 
-
     ambient = new THREE.AmbientLight(0xFFFFFF)
     @scene.add(ambient)
 
