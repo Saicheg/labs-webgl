@@ -6,5 +6,5 @@ window.onload = ->
   body.style.width = window.innerWidth + 'px'
   body.style.height = window.innerHeight + 'px'
 
-  window.controller = new ApplicationController()
-  controller.run()
+  window.app = new ApplicationController()
+  app.run()

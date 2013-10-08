@@ -4,19 +4,22 @@ class window.ButterflyController extends BaseController
     @butterfly = new THREE.Object3D()
     @init.scene.add(@butterfly)
     @loader = new THREE.JSONLoader()
-    @butterfly.position.set(0,0,-150)
     @butterfly.rotation.x = Math.PI / 2
     @butterfly.rotation.y = Math.PI
     @createButterfly()
 
   createButterfly: =>
     @loader.load 'models/wing-left.js', (geometries, materials) =>
+      for material in materials
+        material.side = THREE.DoubleSide
       @left= new THREE.Mesh(geometries, new THREE.MeshFaceMaterial(materials))
       @left.direction = 'up'
       @setParams(@left)
       @butterfly.add(@left)
 
     @loader.load 'models/wing-right.js', (geometries, materials) =>
+      for material in materials
+        material.side = THREE.DoubleSide
       @right = new THREE.Mesh(geometries, new THREE.MeshFaceMaterial(materials))
       @right.direction = 'up'
       @setParams(@right)
