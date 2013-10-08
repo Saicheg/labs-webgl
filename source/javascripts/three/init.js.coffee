@@ -62,18 +62,18 @@ class window.ThreeInit
     # @camera = new THREE.PerspectiveCamera cam.angle, cam.aspect, cam.min, cam.max
     # @camera.position.set cam.x, cam.y, cam.z
 
-    # @camera.lookAt({ x: 0, y: 10, z: 0 })
-    # @scene.add @camera
 
   createLight: ->
     # light = @options.light || {}
 
-    directionalLight = new THREE.DirectionalLight(0xFFFFFF, 1)
-    directionalLight.position.set(0, 0, 150).normalize()
-    @scene.add(directionalLight)
 
     ambient = new THREE.AmbientLight(0xFFFFFF)
     @scene.add(ambient)
+
+    @addLight(0,0,150)
+    @addLight(150,0,0)
+    @addLight(0,0,-150)
+    @addLight(-150,0,0)
 
     # light.intensity || = 1.5
 
@@ -100,7 +100,16 @@ class window.ThreeInit
 
     # @scene.add @light
 
+  addLight: (x,y,z) =>
+    light = new THREE.DirectionalLight(0xFFFFFF, 1)
+    light.position.set(x, y, z).normalize()
+    @scene.add(light)
+
+
 
   render: ->
-    # Render it
+    timer = - new Date().getTime() * 0.0002
+    @camera.position.x = 150 * Math.cos( timer )
+    @camera.position.z = 150 * Math.sin( timer )
+
     @renderer.render @scene, @camera

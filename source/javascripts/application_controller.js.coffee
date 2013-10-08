@@ -19,4 +19,6 @@ class window.ApplicationController
   run: =>
     @render()
 
+    @init.camera.lookAt({x:0, y:0, z:0})
+
     requestAnimationFrame(@run)
