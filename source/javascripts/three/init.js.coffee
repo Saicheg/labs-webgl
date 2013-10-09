@@ -14,6 +14,7 @@ class window.ThreeInit
   createRenderer: =>
     @options.renderer ||= {}
 
+    console.log(@options.renderer)
     # Create the Three.js renderer, add it to our div
     @renderer = new THREE.WebGLRenderer(@options.renderer)
     @renderer.setSize @container.offsetWidth, @container.offsetHeight

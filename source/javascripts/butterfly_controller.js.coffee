@@ -12,7 +12,7 @@ class window.ButterflyController extends BaseController
     @createButterfly()
 
   createButterfly: =>
-    @loader.load 'models/wing-left.js', (geometries, materials) =>
+    @loader.load 'models/butterfly/wing-left.js', (geometries, materials) =>
       for material in materials
         material.side = THREE.DoubleSide
       @left= new THREE.Mesh(geometries, new THREE.MeshFaceMaterial(materials))
@@ -20,7 +20,7 @@ class window.ButterflyController extends BaseController
       @setParams(@left)
       @butterfly.add(@left)
 
-    @loader.load 'models/wing-right.js', (geometries, materials) =>
+    @loader.load 'models/butterfly/wing-right.js', (geometries, materials) =>
       for material in materials
         material.side = THREE.DoubleSide
       @right = new THREE.Mesh(geometries, new THREE.MeshFaceMaterial(materials))
@@ -28,7 +28,7 @@ class window.ButterflyController extends BaseController
       @setParams(@right)
       @butterfly.add(@right)
 
-    @loader.load 'models/body.js', (geometries, materials) =>
+    @loader.load 'models/butterfly/body.js', (geometries, materials) =>
       @body = new THREE.Mesh(geometries, new THREE.MeshFaceMaterial(materials))
       @setParams(@body)
       @butterfly.add(@body)
@@ -60,17 +60,17 @@ class window.ButterflyController extends BaseController
      direction = @leftWingDirection(wing)
      wing.direction = direction
      if direction == 'up'
-       wing.rotation.z += 0.01
+       wing.rotation.z += 0.021
      else if direction == 'down'
-       wing.rotation.z -= 0.01
+       wing.rotation.z -= 0.021
 
    flitterRight: (wing) =>
      direction = @rightWingDirection(wing)
      wing.direction = direction
      if direction == 'up'
-       wing.rotation.z -= 0.01
+       wing.rotation.z -= 0.021
      else if direction == 'down'
-       wing.rotation.z += 0.01
+       wing.rotation.z += 0.021
 
    move: =>
       @angleY += 0.01

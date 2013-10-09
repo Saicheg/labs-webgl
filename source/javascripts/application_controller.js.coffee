@@ -1,11 +1,12 @@
 class window.ApplicationController
   constructor: ->
-    window.WORLD_SIZE = 8000
-    @init = new ThreeInit
+    window.WORLD_SIZE = 1000
+    @init = new ThreeInit({renderer: {antialias: true}})
     window.init = @init
     @controllers = []
 
     @controllers.push(new ButterflyController(@init))
+    @controllers.push(new FlowersController(@init))
     @controllers.push(new MeadowController(@init))
 
   render: =>
